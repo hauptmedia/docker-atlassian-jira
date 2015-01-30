@@ -7,6 +7,7 @@ A docker image for Jira.
 * Based on minimal debian:jessie 
 * Uses Oracle Java 7
 * Integrates Mysql Connector J driver
+* Jira reverse proxy settings can be set via environment variables
 * Can be linked to **hauptmedia/atlassian-mysql** for MySQL backend autoconfig
 * Can be linked from **hauptmedia/atlassian-reverseproxy** for nginx reverse proxy autoconfig
 
