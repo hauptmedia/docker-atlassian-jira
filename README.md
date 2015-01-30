@@ -7,7 +7,8 @@ A docker image for Jira.
 * Based on minimal debian:jessie 
 * Uses Oracle Java 7
 * Integrates Mysql Connector J driver
-* Can be linked to hauptmedia/atlassian-mysql & hauptmedia/atlassian-reverseproxy image for autoconfig
+* Can be linked to **hauptmedia/atlassian-mysql** for MySQL backend autoconfig
+* Can be linked from **hauptmedia/atlassian-reverseproxy** for nginx reverse proxy autoconfig
 
 ## Example usage
 
@@ -44,11 +45,11 @@ docker run --name atlassian-jira-data -d hauptmedia/atlassian-jira-data
 docker run --name atlassian-jira --volumes-from atlassian-jira-data -d hauptmedia/atlassian-jira
 ```
 
-### Database
+### Database backend
 
 #### Link to hauptmeda/atlassian-mysql image
 
-When this image is linked to the hauptmedia/atlassian-mysql image with a local alias named mysql the mysql database will be auto configured in this container.
+When this image is linked to the **hauptmedia/atlassian-mysql** image with a local alias named mysql the mysql database will be auto configured in this container.
 
 ```bash
 docker run --link atlassian-mysql:mysql -d hauptmedia/atlassian-jira
@@ -56,13 +57,13 @@ docker run --link atlassian-mysql:mysql -d hauptmedia/atlassian-jira
 
 ### Reverse proxy setup
 
-Jira needs a special setup when it's run behind a reverse proxy. These settings are exposed via the environment variables JIRA_CONNECTOR_PROXYNAME, JIRA_CONNECTOR_PROXYPORT, JIRA_CONNECTOR_SECURE, JIRA_CONNECTOR_SCHEME and JIRA_CONTEXT_PATH.
+Jira needs a special setup when it's run behind a reverse proxy. These settings are exposed via the environment variables *JIRA_CONNECTOR_PROXYNAME*, *JIRA_CONNECTOR_PROXYPORT*, *JIRA_CONNECTOR_SECURE*, *JIRA_CONNECTOR_SCHEME* and *JIRA_CONTEXT_PATH*.
 
 See http & https examples below.
 
 The documentation of the variables can be found here: https://confluence.atlassian.com/display/JIRA/Integrating+JIRA+with+Apache
 
-Note: if you link the hauptmedia/atlassian-reverseproxy container with this container the resulting reverse proxy will be auto configured (it uses the environment variables from this container)
+Note: if you link the **hauptmedia/atlassian-reverseproxy** container with this container the resulting reverse proxy will be auto configured (it uses the environment variables from this container)
 
 #### http
 
