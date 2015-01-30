@@ -1,4 +1,4 @@
-FROM		hauptmedia/java:7
+FROM		hauptmedia/java:oracle-java7
 MAINTAINER	Julian Haupt <julian.haupt@hauptmedia.de>
 
 ENV		JIRA_VERSION 6.3.14
