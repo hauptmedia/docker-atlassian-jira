@@ -10,6 +10,8 @@ ENV		JIRA_INSTALL_DIR  /opt/atlassian/jira
 ENV             RUN_USER            daemon
 ENV             RUN_GROUP           daemon
 
+ENV     	DEBIAN_FRONTEND noninteractive
+
 # install needed debian packages & clean up
 RUN		apt-get update && \
 		apt-get install -y --no-install-recommends curl tar xmlstarlet ca-certificates && \
