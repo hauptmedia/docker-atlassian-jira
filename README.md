@@ -56,7 +56,13 @@ docker run --link atlassian-mysql:mysql -d hauptmedia/atlassian-jira
 
 ### Reverse proxy setup
 
+Jira needs a special setup when it's run behind a reverse proxy. These settings are exposed via the environment variables JIRA_CONNECTOR_PROXYNAME, JIRA_CONNECTOR_PROXYPORT, JIRA_CONNECTOR_SECURE, JIRA_CONNECTOR_SCHEME and JIRA_CONTEXT_PATH.
+
+See http & https examples below.
+
 The documentation of the variables can be found here: https://confluence.atlassian.com/display/JIRA/Integrating+JIRA+with+Apache
+
+Note: if you link the hauptmedia/atlassian-reverseproxy container with this container the resulting reverse proxy will be auto configured (it uses the environment variables from this container)
 
 #### http
 
