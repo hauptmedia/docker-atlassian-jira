@@ -54,6 +54,8 @@ docker run --link atlassian-mysql:mysql -d hauptmedia/atlassian-jira
 
 ### Reverse proxy setup
 
+The documentation of the variables can be found here: https://confluence.atlassian.com/display/JIRA/Integrating+JIRA+with+Apache
+
 #### http
 
 ```bash
