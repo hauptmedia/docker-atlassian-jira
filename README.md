@@ -46,7 +46,9 @@ docker run --name atlassian-jira --volumes-from atlassian-jira-data -d hauptmedi
 
 ### Database
 
-#### Link to atlassian-mysql image
+#### Link to hauptmeda/atlassian-mysql image
+
+When this image is linked to the hauptmedia/atlassian-mysql image with a local alias named mysql the mysql database will be auto configured in this container.
 
 ```bash
 docker run --link atlassian-mysql:mysql -d hauptmedia/atlassian-jira
