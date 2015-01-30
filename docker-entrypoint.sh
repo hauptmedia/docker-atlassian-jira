@@ -1,5 +1,10 @@
 #!/bin/sh
 
+if [ -z "$JIRA_INSTALL_DIR" ]; then
+	echo Missing JIRA_INSTALL_DIR env
+	exit 1
+fi
+
 if [ -z "$JIRA_HOME" ]; then
 	echo Missing JIRA_HOME env
 	exit 1
@@ -38,8 +43,32 @@ if [ -n "$MYSQL_NAME" ]; then
   </jdbc-datasource>
 </jira-database-config>
 EOF
-
 fi
 
+if [ -n "$JIRA_CONNECTOR_PROXYNAME" ]; then
+	xmlstarlet ed --inplace --delete "/Server/Service/Connector/@proxyName" $JIRA_INSTALL_DIR/conf/server.xml
+	xmlstarlet ed --inplace --insert "/Server/Service/Connector" --type attr -n proxyName -v $JIRA_CONNECTOR_PROXYNAME $JIRA_INSTALL_DIR/conf/server.xml
+fi
+
+if [ -n "$JIRA_CONNECTOR_PROXYPORT" ]; then
+	xmlstarlet ed --inplace --delete "/Server/Service/Connector/@proxyPort" $JIRA_INSTALL_DIR/conf/server.xml
+	xmlstarlet ed --inplace --insert "/Server/Service/Connector" --type attr -n proxyPort -v $JIRA_CONNECTOR_PROXYPORT $JIRA_INSTALL_DIR/conf/server.xml
+fi
+
+if [ -n "$JIRA_CONNECTOR_SECURE" ]; then
+	xmlstarlet ed --inplace --delete "/Server/Service/Connector/@secure" $JIRA_INSTALL_DIR/conf/server.xml
+	xmlstarlet ed --inplace --insert "/Server/Service/Connector" --type attr -n secure -v $JIRA_CONNECTOR_SECURE $JIRA_INSTALL_DIR/conf/server.xml
+fi
+
+if [ -n "$JIRA_CONNECTOR_SCHEME" ]; then
+	xmlstarlet ed --inplace --delete "/Server/Service/Connector/@scheme" $JIRA_INSTALL_DIR/conf/server.xml
+	xmlstarlet ed --inplace --insert "/Server/Service/Connector" --type attr -n scheme -v $JIRA_CONNECTOR_SCHEME $JIRA_INSTALL_DIR/conf/server.xml
+fi
+
+if [ -n "$JIRA_CONTEXT_PATH" ]; then
+	xmlstarlet ed --inplace --delete "/Server/Service/Engine/Host/Context/@path" $JIRA_INSTALL_DIR/conf/server.xml
+	xmlstarlet ed --inplace --insert "/Server/Service/Engine/Host/Context" --type attr -n path -v $JIRA_CONTEXT_PATH $JIRA_INSTALL_DIR/conf/server.xml
+fi
+	
 exec "$@"
 
