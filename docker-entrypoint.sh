@@ -66,8 +66,12 @@ if [ -n "$CONNECTOR_SCHEME" ]; then
 fi
 
 if [ -n "$CONTEXT_PATH" ]; then
+	if [ "$CONTEXT_PATH" = "/" ]; then
+		CONTEXT_PATH=""
+	fi
+
 	xmlstarlet ed --inplace --delete "/Server/Service/Engine/Host/Context/@path" $JIRA_INSTALL_DIR/conf/server.xml
-	xmlstarlet ed --inplace --insert "/Server/Service/Engine/Host/Context" --type attr -n path -v $CONTEXT_PATH $JIRA_INSTALL_DIR/conf/server.xml
+	xmlstarlet ed --inplace --insert "/Server/Service/Engine/Host/Context" --type attr -n path -v "$CONTEXT_PATH" $JIRA_INSTALL_DIR/conf/server.xml
 fi
 	
 exec "$@"
