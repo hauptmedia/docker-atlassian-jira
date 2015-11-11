@@ -1,7 +1,7 @@
 FROM		hauptmedia/java:oracle-java8
 MAINTAINER	Julian Haupt <julian.haupt@hauptmedia.de>
 
-ENV		JIRA_VERSION 6.4.11
+ENV		JIRA_VERSION 7.0.0
 ENV		MYSQL_CONNECTOR_J_VERSION 5.1.34
 
 ENV		JIRA_HOME     /var/atlassian/application-data/jira
@@ -21,7 +21,7 @@ RUN		apt-get update && \
 
 # download and extract jira
 RUN		mkdir -p ${JIRA_INSTALL_DIR} && \
-		curl -L --silent http://www.atlassian.com/software/jira/downloads/binary/atlassian-jira-${JIRA_VERSION}.tar.gz | tar -xz --strip=1 -C ${JIRA_INSTALL_DIR} && \
+		curl -L --silent http://www.atlassian.com/software/jira/downloads/binary/atlassian-jira-software-${JIRA_VERSION}-jira-${JIRA_VERSION}.tar.gz | tar -xz --strip=1 -C ${JIRA_INSTALL_DIR} && \
 		echo -e "\njira.home=$JIRA_HOME" >> "${JIRA_INSTALL_DIR}/atlassian-jira/WEB-INF/classes/jira-application.properties" && \
 		chown -R ${RUN_USER}:${RUN_GROUP} ${JIRA_INSTALL_DIR}
 
