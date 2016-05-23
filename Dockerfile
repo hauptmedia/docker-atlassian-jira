@@ -37,8 +37,6 @@ USER            ${RUN_USER}:${RUN_GROUP}
 
 EXPOSE		8080
 
-VOLUME		["${JIRA_INSTALL_DIR}"]
-
 WORKDIR		${JIRA_INSTALL_DIR}
 ENTRYPOINT	["bin/docker-entrypoint.sh"]
 CMD		["bin/start-jira.sh", "-fg"]
