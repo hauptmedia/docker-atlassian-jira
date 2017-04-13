@@ -19,7 +19,6 @@ RUN		apt-get update && \
         	apt-get autoremove --yes && \
         	rm -rf /var/lib/{apt,dpkg,cache,log}/
 
-https://www.atlassian.com/software/jira/downloads/binary/atlassian-jira-software-7.3.4.tar.gz
 # download and extract jira
 RUN		mkdir -p ${JIRA_INSTALL_DIR} && \
 		curl -L --silent https://www.atlassian.com/software/jira/downloads/binary/atlassian-jira-software-${JIRA_VERSION}.tar.gz | tar -xz --strip=1 -C ${JIRA_INSTALL_DIR} && \
