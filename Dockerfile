@@ -1,8 +1,8 @@
 FROM		hauptmedia/java:oracle-java8
 MAINTAINER	Julian Haupt <julian.haupt@hauptmedia.de>
 
-ENV		JIRA_VERSION 7.3.4
-ENV		MYSQL_CONNECTOR_J_VERSION 5.1.34
+ENV		JIRA_VERSION 7.8.0
+ENV		MYSQL_CONNECTOR_J_VERSION 5.1.45
 
 ENV		JIRA_HOME     /var/atlassian/application-data/jira
 ENV		JIRA_INSTALL_DIR  /opt/atlassian/jira
